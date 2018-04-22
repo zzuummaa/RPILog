@@ -15,7 +15,7 @@
 
     function clearHistory() {
         var command = {
-            clearHistory: true
+            clear_history: true
         }
 
         document.getElementById("log-ta").value = ""
@@ -39,7 +39,8 @@
 
     function subscribe() {
         //console.log("on subscribe")
-        var url = "http://localhost:8080/rpi/log"
+        //var url = "http://localhost:8080/rpi/log"
+        var url = "http://zzuummaa.sytes.net:8070/rpi/log"
 
         var xhr = new XMLHttpRequest();
 

@@ -17,6 +17,12 @@ public class LogServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("doGet");
 
+        boolean clearHistory = Boolean.parseBoolean(req.getParameter("clear_history"));
+        if (clearHistory) {
+            RPILogManager.instance().clearLogHistory();
+            return;
+        }
+
         HashMap<Integer, String> rpiRecords;
 
         String lastRecord = req.getParameter("last_record");
@@ -38,11 +44,14 @@ public class LogServlet extends HttpServlet {
 
             System.out.println("new client");
             rpiRecords = RPILogManager.instance().getRecords();
+            if (rpiRecords.isEmpty()) {
+                rpiRecords = RPILogManager.instance().waitNewLogRecords(lastRecordIndex, 30_000);
+            }
 
         } else {
 
             System.out.println("old client");
-            rpiRecords = RPILogManager.instance().waitNewLogRecords(lastRecordIndex, 10_000);
+            rpiRecords = RPILogManager.instance().waitNewLogRecords(lastRecordIndex, 30_000);
 
         }
 

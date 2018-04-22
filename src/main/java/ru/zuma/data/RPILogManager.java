@@ -83,6 +83,10 @@ public class RPILogManager {
         return (HashMap<Integer, String>) logRecords.clone();
     }
 
+    public synchronized void clearLogHistory() {
+        logRecords.clear();
+    }
+
     private static RPILogManager instance;
     static {
         instance = new RPILogManager();
