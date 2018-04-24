@@ -1,6 +1,5 @@
 package ru.zuma;
 
-import ru.zuma.data.ClientManager;
 import ru.zuma.data.RPILogManager;
 import ru.zuma.utils.JSONConverter;
 

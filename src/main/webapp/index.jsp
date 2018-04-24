@@ -11,14 +11,29 @@
 <script type="text/javascript">
     console.log("js")
 
+    //var url = "http://localhost:8080/rpi/log"
+    var url = "http://zzuummaa.sytes.net:8070/rpi/log"
+
     var lastRecord = -1
 
     function clearHistory() {
-        var command = {
-            clear_history: true
+        document.getElementById("log-ta").value = ""
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState != 4) return;
+
+            if (this.status == 200) {
+                console.log("clear history success")
+            } else {
+                console.log("clear history error")
+                onError(this);
+            }
         }
 
-        document.getElementById("log-ta").value = ""
+        xhr.open("GET", url + "?clear_history=true", true);
+        xhr.send();
     }
 
     function onMessage(text) {
@@ -39,8 +54,6 @@
 
     function subscribe() {
         //console.log("on subscribe")
-        //var url = "http://localhost:8080/rpi/log"
-        var url = "http://zzuummaa.sytes.net:8070/rpi/log"
 
         var xhr = new XMLHttpRequest();
 

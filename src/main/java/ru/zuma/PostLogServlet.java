@@ -22,8 +22,12 @@ public class PostLogServlet extends HttpServlet {
 
         String log = JSONConverter.jsonToLog(json);
 
-        System.out.println("doPost: " + log);
-        RPILogManager.instance().addLogRecord(log);
-        resp.setStatus(HttpServletResponse.SC_OK);
+        if (!log.equals("")) {
+            System.out.println("doPost: " + log);
+            RPILogManager.instance().addLogRecord(log);
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 }
