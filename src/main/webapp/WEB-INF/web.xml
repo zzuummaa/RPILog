@@ -5,23 +5,4 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
-  <servlet>
-    <servlet-name>Log</servlet-name>
-    <servlet-class>ru.zuma.LogServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>Log</servlet-name>
-    <url-pattern>/log</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>PostLog</servlet-name>
-    <servlet-class>ru.zuma.PostLogServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>PostLog</servlet-name>
-    <url-pattern>/postlog</url-pattern>
-  </servlet-mapping>
 </web-app>
